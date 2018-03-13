@@ -1168,7 +1168,16 @@ int main(int argc, char *argv[]) {
             err(libusb_get_device_descriptor(dev_list[i], &descr));
             err(libusb_open(dev_list[i], &dev));
             break;
+        } else if (descriptor.idVendor == 0x6cb && descriptor.idProduct == 0x9a){
+            printf("Found device %04x:%04x\n", descriptor.idVendor, descriptor.idProduct);
+            puts("Unknown device, lets try anyway");
+            idProduct = descriptor.idProduct;
+            err(libusb_get_device_descriptor(dev_list[i], &descr));
+            err(libusb_open(dev_list[i], &dev));
+            break;
         }
+             
+        
     }
     if (dev == NULL) {
         puts("No devices found");
