@@ -988,20 +988,20 @@ void fingerprint() {
     byte image[144 * 144];
     int image_len = 0;
 
-    tls_write(data10, sizeof(data10));
-    tls_read(response, &response_len);puts("READ:");print_hex(response, response_len);
-    memcpy(image, response + 0x12, response_len - 0x12);
-    image_len += response_len - 0x12;
+//    tls_write(data10, sizeof(data10));
+//    tls_read(response, &response_len);puts("READ:");print_hex(response, response_len);
+//    memcpy(image, response + 0x12, response_len - 0x12);
+//    image_len += response_len - 0x12;
 
-    tls_write(data10, sizeof(data10));
-    tls_read(response, &response_len);puts("READ:");print_hex(response, response_len);
-    memcpy(image + image_len, response + 0x06, response_len - 0x06);
-    image_len += response_len - 0x06;
+//    tls_write(data10, sizeof(data10));
+//    tls_read(response, &response_len);puts("READ:");print_hex(response, response_len);
+//    memcpy(image + image_len, response + 0x06, response_len - 0x06);
+//    image_len += response_len - 0x06;
 
-    tls_write(data10, sizeof(data10));
-    tls_read(response, &response_len);puts("READ:");print_hex(response, response_len);
-    memcpy(image + image_len, response + 0x06, response_len - 0x06);
-    image_len += response_len - 0x06;
+//    tls_write(data10, sizeof(data10));
+//    tls_read(response, &response_len);puts("READ:");print_hex(response, response_len);
+//    memcpy(image + image_len, response + 0x06, response_len - 0x06);
+//    image_len += response_len - 0x06;
 
 
 
@@ -1169,7 +1169,7 @@ int main(int argc, char *argv[]) {
             err(libusb_get_device_descriptor(dev_list[i], &descr));
             err(libusb_open(dev_list[i], &dev));
             break;
-        } else if (descriptor.idVendor == 0x6cb && descriptor.idProduct == 0x9a){
+        }else if (descriptor.idVendor == 0x6cb && descriptor.idProduct == 0x9a){
             printf("Found device %04x:%04x\n", descriptor.idVendor, descriptor.idProduct);
             puts("Unknown device, lets try anyway");
             idProduct = descriptor.idProduct;
@@ -1177,8 +1177,6 @@ int main(int argc, char *argv[]) {
             err(libusb_open(dev_list[i], &dev));
             break;
         }
-             
-        
     }
     if (dev == NULL) {
         puts("No devices found");
